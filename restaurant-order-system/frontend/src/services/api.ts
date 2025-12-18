@@ -31,6 +31,9 @@ export const orderAPI = {
   getMyOrders: () => api.get('/orders/my-orders'),
   getAllOrders: () => api.get('/orders'),
   updateStatus: (id: string, status: string) => api.put(`/orders/${id}/status`, { status }),
+  cancelOrder: (id: string) => api.put(`/orders/${id}/cancel`),
+  getAnalytics: (startDate?: string, endDate?: string) => 
+    api.get('/orders/analytics/stats', { params: { startDate, endDate } }),
 };
 
 export default api;

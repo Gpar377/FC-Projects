@@ -45,6 +45,17 @@ const OrderTracking: React.FC = () => {
     }
   };
 
+  const handleCancelOrder = async (orderId: string) => {
+    if (!window.confirm('Are you sure you want to cancel this order?')) return;
+    
+    try {
+      await orderAPI.cancelOrder(orderId);
+      fetchOrders();
+    } catch (error: any) {
+      alert(error.response?.data?.message || 'Failed to cancel order');
+    }
+  };
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'placed': return '#f39c12';
@@ -87,8 +98,17 @@ const OrderTracking: React.FC = () => {
                 </span>
               </div>
               
+              {order.status === 'placed' && (
+                <button 
+                  onClick={() => handleCancelOrder(order._id)}
+                  className="cancel-order-btn"
+                >
+                  Cancel Order
+                </button>
+              )}
+              
               <div className="order-details">
-                <p><strong>Total:</strong> ${order.totalAmount.toFixed(2)}</p>
+                <p><strong>Total:</strong> ₹{order.totalAmount.toFixed(2)}</p>
                 <p><strong>Estimated Time:</strong> {order.estimatedTime} minutes</p>
                 <p><strong>Ordered:</strong> {new Date(order.createdAt).toLocaleString()}</p>
               </div>
@@ -98,7 +118,7 @@ const OrderTracking: React.FC = () => {
                 {order.items.map((item, index) => (
                   <div key={index} className="order-item">
                     <span>{item.quantity}x {item.menuItem.name}</span>
-                    <span>${(item.menuItem.price * item.quantity).toFixed(2)}</span>
+                    <span>₹{(item.menuItem.price * item.quantity).toFixed(2)}</span>
                   </div>
                 ))}
               </div>

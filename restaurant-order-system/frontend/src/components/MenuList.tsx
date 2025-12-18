@@ -40,6 +40,7 @@ const MenuList: React.FC<MenuListProps> = ({ onAddToCart }) => {
 
   useEffect(() => {
     fetchMenuItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategory, searchTerm]);
 
   return (
@@ -75,7 +76,7 @@ const MenuList: React.FC<MenuListProps> = ({ onAddToCart }) => {
               <h3>{item.name}</h3>
               <p className="description">{item.description}</p>
               <div className="item-details">
-                <span className="price">${item.price.toFixed(2)}</span>
+                <span className="price">₹{item.price.toFixed(2)}</span>
                 <span className="prep-time">{item.preparationTime} min</span>
               </div>
               <button 

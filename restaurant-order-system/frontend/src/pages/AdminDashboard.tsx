@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { orderAPI } from '../services/api';
 import socketService from '../services/socket';
 import MenuManagement from '../components/MenuManagement';
+import Analytics from '../components/Analytics';
 
 interface Order {
   _id: string;
@@ -18,7 +19,7 @@ interface Order {
 
 const AdminDashboard: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
-  const [activeTab, setActiveTab] = useState<'orders' | 'menu'>('orders');
+  const [activeTab, setActiveTab] = useState<'orders' | 'menu' | 'analytics'>('orders');
 
   useEffect(() => {
     fetchOrders();
@@ -79,6 +80,12 @@ const AdminDashboard: React.FC = () => {
             Orders
           </button>
           <button 
+            className={activeTab === 'analytics' ? 'active' : ''}
+            onClick={() => setActiveTab('analytics')}
+          >
+            Analytics
+          </button>
+          <button 
             className={activeTab === 'menu' ? 'active' : ''}
             onClick={() => setActiveTab('menu')}
           >
@@ -106,7 +113,7 @@ const AdminDashboard: React.FC = () => {
                 <div className="customer-info">
                   <p><strong>Customer:</strong> {order.user.name}</p>
                   <p><strong>Email:</strong> {order.user.email}</p>
-                  <p><strong>Total:</strong> ${order.totalAmount.toFixed(2)}</p>
+                  <p><strong>Total:</strong> ₹{order.totalAmount.toFixed(2)}</p>
                   <p><strong>Time:</strong> {new Date(order.createdAt).toLocaleString()}</p>
                 </div>
                 
@@ -133,6 +140,10 @@ const AdminDashboard: React.FC = () => {
             ))}
           </div>
         </div>
+      )}
+
+      {activeTab === 'analytics' && (
+        <Analytics />
       )}
 
       {activeTab === 'menu' && (

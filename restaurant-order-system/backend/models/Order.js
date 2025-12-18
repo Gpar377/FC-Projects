@@ -16,6 +16,7 @@ const orderSchema = new mongoose.Schema({
     default: 'placed' 
   },
   orderNumber: { type: String, unique: true },
+  tableNumber: { type: String },
   estimatedTime: { type: Number }, // in minutes
   notes: { type: String },
 }, { timestamps: true });

@@ -35,7 +35,7 @@ const Cart: React.FC<CartProps> = ({ items, onUpdateQuantity, onRemoveItem, onCh
           <div key={item._id} className="cart-item">
             <div className="item-info">
               <h4>{item.name}</h4>
-              <span className="item-price">${item.price.toFixed(2)}</span>
+              <span className="item-price">₹{item.price.toFixed(2)}</span>
             </div>
             
             <div className="quantity-controls">
@@ -52,7 +52,7 @@ const Cart: React.FC<CartProps> = ({ items, onUpdateQuantity, onRemoveItem, onCh
             </div>
             
             <div className="item-total">
-              ${(item.price * item.quantity).toFixed(2)}
+              ₹{(item.price * item.quantity).toFixed(2)}
             </div>
             
             <button 
@@ -67,7 +67,7 @@ const Cart: React.FC<CartProps> = ({ items, onUpdateQuantity, onRemoveItem, onCh
       
       <div className="cart-summary">
         <div className="total">
-          <strong>Total: ${total.toFixed(2)}</strong>
+          <strong>Total: ₹{total.toFixed(2)}</strong>
         </div>
         <button onClick={onCheckout} className="checkout-btn">
           Place Order
