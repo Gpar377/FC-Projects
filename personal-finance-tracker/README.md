@@ -4,13 +4,20 @@ A full-stack personal budgeting and expense tracking system built with React.js,
 
 ## Features
 
-- User registration & login with JWT authentication
-- Add/edit/delete income & expenses
-- Category-wise transaction tracking
-- Monthly analytics with interactive charts
-- Export reports (CSV/PDF)
-- Dashboard with summary statistics
-- Responsive design
+- 🔐 User registration & login with JWT authentication
+- 💰 Add/edit/delete income & expenses
+- 🔍 Search & filter transactions (by category, type, date range)
+- 📊 Category-wise transaction tracking
+- 📈 Monthly analytics with interactive charts (Area, Bar, Pie, Radial)
+- 📅 Time range filtering (Week/Month/Year)
+- 🎯 Budget goals & tracking with progress bars
+- ⚠️ Budget alerts (visual indicators when over budget)
+- 📄 Export reports (CSV/PDF)
+- 📊 Dashboard with summary statistics & real-time updates
+- 🔄 Real-time updates via Socket.io
+- 💱 Indian Rupee (₹) currency formatting
+- 📉 Savings rate calculator
+- 📱 Responsive design
 
 ## Tech Stack
 
@@ -81,13 +88,23 @@ npm start
 
 ## API Endpoints
 
+### Authentication
 - `POST /api/auth/register` - User registration
 - `POST /api/auth/login` - User login
+
+### Transactions
 - `GET /api/transactions` - Get all transactions
 - `POST /api/transactions` - Create new transaction
 - `PUT /api/transactions/:id` - Update transaction
 - `DELETE /api/transactions/:id` - Delete transaction
-- `GET /api/transactions/analytics` - Get analytics data
+- `GET /api/transactions/analytics?startDate=&endDate=` - Get analytics with date range
+- `GET /api/transactions/search?category=&type=&startDate=&endDate=` - Search/filter transactions
+
+### Budgets
+- `GET /api/budgets?month=YYYY-MM` - Get budgets for specific month
+- `POST /api/budgets` - Create new budget
+- `PUT /api/budgets/:id` - Update budget
+- `DELETE /api/budgets/:id` - Delete budget
 
 ## Project Structure
 
