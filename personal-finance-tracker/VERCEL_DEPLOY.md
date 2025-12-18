@@ -12,8 +12,8 @@
 
 4. **Environment Variables**:
 ```
-MONGODB_URI=mongodb+srv://gopaparthiv_db_user:Gparthiv@cluster0.vaxcizd.mongodb.net/finance-tracker?retryWrites=true&w=majority
-JWT_SECRET=your-secret-key-finance-2024
+MONGODB_URI=<your-mongodb-atlas-connection-string>
+JWT_SECRET=<your-jwt-secret-key>
 FRONTEND_URL=http://localhost:3000
 ```
 
